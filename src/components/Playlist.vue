@@ -12,9 +12,8 @@
       </div>
     <div class="col-md-12">
       <ul style='list-style:none'>
-        <!-- <li v-for='item in dict' :key='item.song'> -->
-        <li v-for='item in dict'>
-          {{ item.song }} - {{ item.artist }}
+        <li v-for='entry in this.dict'>
+          {{ entry.song }} - {{ entry.artist }}
         </li>
       </ul>
     </div>
@@ -30,8 +29,7 @@ export default {
     return {
       songname: '',
       artistname: '',
-      dict: [
-      ]
+      dict: []
     }
   },
 
@@ -39,18 +37,24 @@ export default {
   },
   methods: {
 
-    inArray: function (query, haystack) {
+    inArray: function (haystack, songname, artistname) {
       var length = haystack.length
       for (var i = 0; i < length; i++) {
-        if (haystack[i] === query) return true
+        if (haystack[i].song === songname && haystack[i].artist === artistname) {
+          return true
+        }
       }
       return false
     },
 
     saveInput: function (songname, artistname) {
-      if (this.inArray({song: songname, artist: artistname}, this.dict) === true) {
+      if (this.inArray(this.dict, songname, artistname)) {
       } else {
-        this.dict.push({song: songname, artist: artistname})
+      // this.dict.push({song: songname, artist: artistname})
+        this.dict.push({
+          song: songname,
+          artist: artistname
+        })
       }
     }
   }

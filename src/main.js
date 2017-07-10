@@ -2,16 +2,28 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
-import comprouter from 'vue-router'
-
+import Welcome from './components/Welcome'
+import Playlist from './components/Playlist'
+import About from './components/About'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 Vue.config.productionTip = false
+
+const routes = [
+{path: '/', component: Welcome},
+{path: '/playlist', component: Playlist},
+{path: '/about', component: About}
+]
+
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  comprouter,
   template: '<App/>',
   components: { App }
-})
+}).$mount('#app')

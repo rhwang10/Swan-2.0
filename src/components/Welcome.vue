@@ -13,7 +13,7 @@
           <li>Crunch your playlist through the Swanify algorithm (coming soon)</li>
         </ul>
       </div>
-      <button v-on:click='redirectTo()'>Click here to get started</button>
+      <button v-on:click='redirectTo()'>Click here to learn more</button>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     redirectTo: function () {
-      location.href = '/#/playlist'
+      this.$router.push('/about')
     }
   }
 }

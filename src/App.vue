@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <img src="./assets/swan-logo.png">
+    <router-link v-bind:to="'/'">Welcome</router-link>
+    <router-link v-bind:to="'/playlist'">Playlist Creator</router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -26,4 +28,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+a {
+  padding: 10px;
+  display: inline-block;
+  word-wrap: normal;
+  color: #2c3e50;
+}
+
 </style>
