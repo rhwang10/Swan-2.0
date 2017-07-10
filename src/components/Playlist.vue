@@ -7,13 +7,14 @@
 
       <div class="col-md-12">
         <input v-model='songname' placeholder="Song">
-        <input v-model='artist' placeholder="Artist">
-        <button v-on:click='saveInput(songname, artist)'>Add to your Swan Playlist</button>
+        <input v-model='artistname' placeholder="Artist">
+        <button v-on:click='saveInput(songname, artistname)'>Add to your Swan Playlist</button>
       </div>
     <div class="col-md-12">
       <ul style='list-style:none'>
-        <li v-for='item in dict' :key='item.song'>
-          {{ item.song }} - {{item.artist }}
+        <!-- <li v-for='item in dict' :key='item.song'> -->
+        <li v-for='item in dict'>
+          {{ item.song }} - {{ item.artist }}
         </li>
       </ul>
     </div>
@@ -27,20 +28,30 @@ export default {
 
   data () {
     return {
+      songname: '',
+      artistname: '',
       dict: [
       ]
     }
   },
+
   components: {
   },
   methods: {
 
-    saveInput: function (songname, artist) {
-      this.dict.push({song: songname, artist: artist})
-    }
+    inArray: function (query, haystack) {
+      var length = haystack.length
+      for (var i = 0; i < length; i++) {
+        if (haystack[i] === query) return true
+      }
+      return false
+    },
 
-    deleteInput: function() {
-
+    saveInput: function (songname, artistname) {
+      if (this.inArray({song: songname, artist: artistname}, this.dict) === true) {
+      } else {
+        this.dict.push({song: songname, artist: artistname})
+      }
     }
   }
 }
