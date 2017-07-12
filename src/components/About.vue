@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <h1>This is the about page.</h1>
+      <h2>Swan is a free open-source music app with one goal in mind: unify music information across all different streaming platforms.</h2>
     </div>
   </div>
 </template>

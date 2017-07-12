@@ -5,6 +5,9 @@ import App from './App'
 import Welcome from './components/Welcome'
 import Playlist from './components/Playlist'
 import About from './components/About'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+Vue.use(VueMaterial)
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 Vue.config.productionTip = false

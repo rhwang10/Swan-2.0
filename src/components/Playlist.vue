@@ -1,27 +1,57 @@
 <template>
   <div class="Playlists">
     <div class="row">
+
       <div class="col-md-12">
         <h1>Welcome to the playlist creator</h1>
       </div>
 
-      <div class="col-md-12">
+      <div class='col-md-12'>
         <input v-model='songname' placeholder="Song">
         <input v-model='artistname' placeholder="Artist">
         <button v-on:click='saveInput(songname, artistname)'>Add to your Swan Playlist</button>
+        <br>
+        <br>
+        <input v-model='deletesong' placeholder='Song'>
+        <input v-model='deleteartist' placeholder='Artist'>
+        <button v-on:click='deleteEntry(deletesong, deleteartist)'>Delete from playlist</button>
+        <br>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div class='md-title'>Playlist Builder</div>
+            <div class='md-subhead'>Built using Material Design for Vue.js</div>
+          </md-card-header>
+
+          <md-card-content>
+
+            <md-button class='md-raised md-primary' v-on:click='eraseTable()'>Start from Scratch</md-button>
+
+            <md-table>
+              <md-table-header>
+                <md-table-row>
+                  <md-table-head>Song Name</md-table-head>
+                  <md-table-head>Artist</md-table-head>
+                </md-table-row>
+              </md-table-header>
+              <md-table-body>
+                <md-table-row v-for='entry in this.dict' :key='song'>
+                  <md-table-cell>{{entry.song}}</md-table-cell>
+                  <md-table-cell>{{entry.artist}}</md-table-cell>
+                  <md-button v-on:click='deleteEntry(entry.song, entry.artist)'>Delete</md-button>
+                </md-table-row>
+              </md-table-body>
+            </md-table>
+          </md-card-content>
+        </md-card>
       </div>
-    <div class="col-md-12">
-      <ul style='list-style:none'>
-        <li v-for='entry in this.dict'>
-          {{ entry.song }} - {{ entry.artist }}
-        </li>
-      </ul>
-    </div>
+
   </div>
 </div>
 </template>
 
 <script type="text/javascript">
+import Vue from 'vue'
 export default {
   name: 'playlist',
 
@@ -34,6 +64,7 @@ export default {
   },
 
   components: {
+
   },
   methods: {
 
@@ -50,16 +81,38 @@ export default {
     saveInput: function (songname, artistname) {
       if (this.inArray(this.dict, songname, artistname)) {
       } else {
-      // this.dict.push({song: songname, artist: artistname})
         this.dict.push({
           song: songname,
           artist: artistname
         })
       }
+      songname = ''
+      artistname = ''
+    },
+
+    deleteEntry: function (songname, artistname) {
+      if (this.inArray(this.dict, songname, artistname)) {
+        var length = this.dict.length
+        for (var a = 0; a < length; a++) {
+          if (this.dict[a].song === songname && this.dict[a].artist === artistname) {
+            if (a === 0) {
+              this.dict.splice(a, a + 1)
+            } else {
+              this.dict.splice(a, a)
+            }
+          }
+        }
+      }
+    },
+
+    eraseTable: function () {
+      this.dict.splice(0, this.dict.length)
     }
   }
 }
-
+Vue.component('my-component', {
+  template: '<div>Testing Components!</div>'
+})
 </script>
 
 <style scoped>
@@ -77,6 +130,4 @@ button {
     font-style: 'Avenir';
     cursor: pointer;
 }
-
-
 </style>
