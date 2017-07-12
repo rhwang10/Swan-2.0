@@ -86,21 +86,12 @@ export default {
           artist: artistname
         })
       }
-      songname = ''
-      artistname = ''
     },
 
     deleteEntry: function (songname, artistname) {
-      if (this.inArray(this.dict, songname, artistname)) {
-        var length = this.dict.length
-        for (var a = 0; a < length; a++) {
-          if (this.dict[a].song === songname && this.dict[a].artist === artistname) {
-            if (a === 0) {
-              this.dict.splice(a, a + 1)
-            } else {
-              this.dict.splice(a, a)
-            }
-          }
+      for (var a = 0; a < this.dict.length; a++) {
+        if (this.dict[a].song === songname && this.dict[a].artist === artistname) {
+          this.dict.splice(a, 1)
         }
       }
     },
