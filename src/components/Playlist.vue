@@ -27,7 +27,7 @@
 
             <md-button class='md-raised md-primary' v-on:click='eraseTable()'>Start from Scratch</md-button>
 
-            <md-table>
+            <md-table style='width:100%'>
               <md-table-header>
                 <md-table-row>
                   <md-table-head>Song Name</md-table-head>
@@ -35,9 +35,9 @@
                 </md-table-row>
               </md-table-header>
               <md-table-body>
-                <md-table-row v-for='entry in this.dict' :key='song'>
-                  <md-table-cell>{{entry.song}}</md-table-cell>
-                  <md-table-cell>{{entry.artist}}</md-table-cell>
+                <md-table-row v-for='entry in this.dict' :key='song' :md-item='row'>
+                  <md-table-cell width='10%'>{{entry.song}}</md-table-cell>
+                  <md-table-cell width='10%'>{{entry.artist}}</md-table-cell>
                   <md-button v-on:click='deleteEntry(entry.song, entry.artist)'>Delete</md-button>
                 </md-table-row>
               </md-table-body>
@@ -57,8 +57,6 @@ export default {
 
   data () {
     return {
-      songname: '',
-      artistname: '',
       dict: []
     }
   },
@@ -79,13 +77,15 @@ export default {
     },
 
     saveInput: function (songname, artistname) {
-      if (this.inArray(this.dict, songname, artistname)) {
+      if (songname === '' && artistname === '' || this.inArray(this.dict, songname, artistname)) {
       } else {
         this.dict.push({
           song: songname,
           artist: artistname
         })
       }
+      this.songname = ''
+      this.artistname = ''
     },
 
     deleteEntry: function (songname, artistname) {
@@ -94,6 +94,8 @@ export default {
           this.dict.splice(a, 1)
         }
       }
+      this.deletesong = ''
+      this.deleteartist = ''
     },
 
     eraseTable: function () {
