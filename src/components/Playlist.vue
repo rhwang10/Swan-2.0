@@ -32,13 +32,20 @@
                 <md-table-row>
                   <md-table-head>Song Name</md-table-head>
                   <md-table-head>Artist</md-table-head>
+                  <md-table-head>Rating</md-table-head>
+                  <md-table-head>Delete</md-table-head>
                 </md-table-row>
               </md-table-header>
               <md-table-body>
                 <md-table-row v-for='entry in this.dict' :key='song' :md-item='row'>
-                  <md-table-cell width='10%'>{{entry.song}}</md-table-cell>
-                  <md-table-cell width='10%'>{{entry.artist}}</md-table-cell>
-                  <md-button v-on:click='deleteEntry(entry.song, entry.artist)'>Delete</md-button>
+                  <md-table-cell>{{entry.song}}</md-table-cell>
+                  <md-table-cell>{{entry.artist}}</md-table-cell>
+                  <md-table-cell>
+                    <md-rating-bar v-model='ratingValue' class='md-primary' md-theme='teal'></md-rating-bar>
+                  </md-table-cell>
+                  <md-table-cell width='20%'>
+                    <md-button v-on:click='deleteEntry(entry.song, entry.artist)'>Delete</md-button>
+                  </md-table-cell>
                 </md-table-row>
               </md-table-body>
             </md-table>
@@ -115,7 +122,7 @@ h1, h2 {
 }
 
 button {
-    width: 200px;
+    width: 150px;
     border: None;
     padding: 5px;
     background-color: #42b983;
