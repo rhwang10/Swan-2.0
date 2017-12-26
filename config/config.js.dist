@@ -1,0 +1,7 @@
+var config = {
+  clientID: '',
+  clientSecret: ''
+  baseURL: 'https://api.spotify.com'
+}
+
+module.exports = config

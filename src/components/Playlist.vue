@@ -27,12 +27,11 @@
 
             <md-button class='md-raised md-primary' v-on:click='eraseTable()'>Start from Scratch</md-button>
 
-            <md-table style='width:100%'>
+            <md-table style='width: 100%'>
               <md-table-header>
                 <md-table-row>
                   <md-table-head>Song Name</md-table-head>
                   <md-table-head>Artist</md-table-head>
-                  <md-table-head>Rating</md-table-head>
                   <md-table-head>Delete</md-table-head>
                 </md-table-row>
               </md-table-header>
@@ -40,11 +39,8 @@
                 <md-table-row v-for='entry in this.dict' :key='song' :md-item='row'>
                   <md-table-cell>{{entry.song}}</md-table-cell>
                   <md-table-cell>{{entry.artist}}</md-table-cell>
-                  <md-table-cell>
-                    <md-rating-bar v-model='ratingValue' class='md-primary' md-theme='teal'></md-rating-bar>
-                  </md-table-cell>
-                  <md-table-cell width='20%'>
-                    <md-button v-on:click='deleteEntry(entry.song, entry.artist)'>Delete</md-button>
+                  <md-table-cell style= 'width: 100px'>
+                    <button v-on:click='deleteEntry(entry.song, entry.artist)'>Delete</button>
                   </md-table-cell>
                 </md-table-row>
               </md-table-body>
@@ -74,6 +70,7 @@ export default {
   methods: {
 
     inArray: function (haystack, songname, artistname) {
+      // var match = haystack.filter()
       var length = haystack.length
       for (var i = 0; i < length; i++) {
         if (haystack[i].song === songname && haystack[i].artist === artistname) {

@@ -5,6 +5,7 @@ import App from './App'
 import Welcome from './components/Welcome'
 import Playlist from './components/Playlist'
 import About from './components/About'
+import Search from './components/Search'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 Vue.use(VueMaterial)
@@ -15,7 +16,8 @@ Vue.config.productionTip = false
 const routes = [
 {path: '/', component: Welcome},
 {path: '/playlist', component: Playlist},
-{path: '/about', component: About}
+{path: '/about', component: About},
+{path: '/search', component: Search}
 ]
 
 const router = new VueRouter({

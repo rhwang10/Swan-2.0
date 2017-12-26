@@ -3,6 +3,7 @@
     <img src="./assets/swan-logo.png">
     <router-link v-bind:to="'/'">Welcome</router-link>
     <router-link v-bind:to="'/playlist'">Playlist Creator</router-link>
+    <router-link v-bind:to="'/search'">Search</router-link>
     <router-view></router-view>
   </div>
 </template>
